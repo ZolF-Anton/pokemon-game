@@ -8,7 +8,7 @@ const Layout = (props) => {
             ? { backgroundImage: `url(${background})` }
             : { backgroundColor: '#e2e2e2' };
     return (
-        <section className="root" className={lStyle.root} style={stylePicker}>
+        <section class="root" className={lStyle.root} style={stylePicker}>
             <div className={lStyle.wrapper}>
                 <article>
                     <div className={lStyle.title}>
