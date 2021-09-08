@@ -1,7 +1,7 @@
-import fStyle from '../Footer/footer.css';
+import fStyle from './footer.module.css';
 
-const Footer = (props) => {
-    console.log('fStyle:', fStyle);
+const Footer = () => {
+    
     return (
         <footer>
             <div className={fStyle.wrapper}>
