@@ -1,16 +1,33 @@
 import Header from './components/Header';
 import Layout from './components/Layout';
 import Footer from './components/Footer';
+import bgImg from './components/img/bg3.jpg';
 
 const App = () => {
     return (
         <>
-            <Header title="No m00n here" descr="try to find" />
-
-            <Layout title="Chapter ONE" decsr="img" urlBg="./img/bg3.jpg" colorBg="" />
-            <Layout title="Chapter TWO" decsr="color" urlBg="" colorBg="#e2e2e2" />
-            <Layout title="Chapter THREE" decsr="img" urlBg="" colorBg="" />
-
+            <Header title="No m00n here" descr="An adventure of Pooh" />
+            <Layout
+                title="Chapter ONE"
+                descr=" ...in which we are introduced to
+                        Winnie-the-Pooh and some bees, and the stories begin"
+                urlBg={bgImg}
+                colorBg=""
+            />
+            <Layout
+                title="Chapter TWO"
+                descr=" ...in which Pooh goes visiting and gets
+                        into a tight place"
+                urlBg=""
+                colorBg="#e2e2e2"
+            />
+            <Layout
+                title="Chapter THREE"
+                descr="...in which Pooh and piglet go hunting
+                        and nearly catch a woozle"
+                urlBg={bgImg}
+                colorBg=""
+            />
             <Footer />
         </>
     );
