@@ -12,13 +12,11 @@ const App = () => {
                 descr=" ...in which we are introduced to
                         Winnie-the-Pooh and some bees, and the stories begin"
                 urlBg={bgImg}
-                colorBg=""
             />
             <Layout
                 title="Chapter TWO"
                 descr=" ...in which Pooh goes visiting and gets
                         into a tight place"
-                urlBg=""
                 colorBg="#e2e2e2"
             />
             <Layout
@@ -26,7 +24,6 @@ const App = () => {
                 descr="...in which Pooh and piglet go hunting
                         and nearly catch a woozle"
                 urlBg={bgImg}
-                colorBg=""
             />
             <Footer />
         </>
