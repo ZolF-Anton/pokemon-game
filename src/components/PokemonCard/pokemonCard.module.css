@@ -3,12 +3,6 @@
     height: 388px;
     margin: 16px;
     perspective: 1000px;
-    font-size: 1.4rem;
-    position: relative;
-    background: #fafafa;
-    clip-path: polygon(0 0, 20% 5%, 100% 0, 100% 100%, 80% 95%, 0 100%);
-    z-index: 5;
-    background-attachment: fixed;
 }
 
 .root .wrapper {
@@ -42,9 +36,12 @@
 }
 
 /* TODO: This place where we should change :hover on .active */
-.pokemonCard:hover {
+.pokemonCard.active {
     transform: rotateY(0deg);
 }
+/* .pokemonCard:hover {
+    transform: rotateY(0deg);
+} */
 
 .cardFront,
 .cardBack {
