@@ -4,15 +4,13 @@ import { useState } from 'react';
 
 const PokemonCard = (props) => {
     const [isActive, setActive] = useState('false');
-    const onClickF = () => {
-        console.log('Pokemon name is:' + props.name);
-        setActive(!isActive);
-    };
+    const onClickF = () => setActive(!isActive);
+
     return (
         <div className={pStyle.root} onClick={onClickF}>
             <div
                 className={`${pStyle.pokemonCard} ${
-                    isActive === false ? pStyle.active : null
+                    isActive ? '' : pStyle.active
                 }`}
             >
                 <div className={pStyle.cardFront}>
