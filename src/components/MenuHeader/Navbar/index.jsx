@@ -1,10 +1,10 @@
 import s from './navbar.module.css';
 import cn from 'classnames';
 
-const Navbar = ({ menuState, setMenuState, handleState }) => {
+const Navbar = ({ menuState, bgActive = false, handleState }) => {
     return (
         <>
-            <nav class={s.root}>
+            <nav id={s.navbar} class={cn(s.root, { [s.bgActive]: bgActive })}>
                 <div class={s.navWrapper}>
                     <p class={s.brand}>LOGO</p>
                     <button

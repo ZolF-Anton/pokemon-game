@@ -1,33 +1,33 @@
 import s from './menu.module.css';
+import { Link } from 'react-router-dom';
 import cn from 'classnames';
 
 const Menu = ({ menuState, setMenuState, handleState }) => {
     return (
         <>
-            {/* <div class="menuContainer active/deactive"> */}
             <div class={cn(s.menuContainer, { [s.active]: menuState, [s.deactive]: !menuState })}>
                 <div class={s.overlay} />
                 <div class={s.menuItems}>
                     <ul>
                         <li>
-                            <a onClick={handleState} href="#welcome">
+                            <Link onClick={handleState} to="/">
                                 HOME
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a onClick={handleState} href="#game">
+                            <Link onClick={handleState} to="/game">
                                 GAME
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a onClick={handleState} href="#about">
+                            <Link onClick={handleState} to="/about">
                                 ABOUT
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a onClick={handleState} href="#contact">
+                            <Link onClick={handleState} to="/contact">
                                 CONTACT
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

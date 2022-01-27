@@ -1,11 +1,8 @@
 import hStyle from './header.module.css';
+import { Link } from 'react-router-dom';
 
 const Header = ({ title, descr, children, onClickButton }) => {
     const stylePic = title ? title : null;
-    const handleClick = () => {
-        console.log('#####: <Header />');
-        onClickButton && onClickButton('game');
-    };
 
     return (
         <header className={hStyle.root}>
@@ -14,7 +11,9 @@ const Header = ({ title, descr, children, onClickButton }) => {
                 <h1>{stylePic}</h1>
 
                 <p>{children}</p>
-                <button onClick={handleClick}>Start GAME!</button>
+                <Link to="/game">
+                    <button>Start GAME!</button>
+                </Link>
             </div>
         </header>
     );

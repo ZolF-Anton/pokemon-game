@@ -4,7 +4,7 @@ import Layout from '../../components/Layout';
 import Footer from '../../components/Footer';
 import bgImg from '../../components/img/bg3.jpg';
 import PokemonCard from '../../components/PokemonCard';
-import './style.module.css';
+import s from './style.module.css';
 
 const POKEMONS = [
     {
@@ -144,7 +144,7 @@ const HomePage = ({ onChangePage }) => {
                 </p>
             </Layout>
             <Layout id="cards" title="Cards" colorTittle="#FEFEFE" colorBg="#202736">
-                <div className="flex">
+                <div className={s.flex}>
                     {POKEMONS.map(
                         (item) => (
                             <PokemonCard
