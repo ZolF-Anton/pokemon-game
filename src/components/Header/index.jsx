@@ -1,19 +1,26 @@
 import hStyle from './header.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header = ({ title, descr, children, onClickButton }) => {
     const stylePic = title ? title : null;
+    const history = useNavigate();
+
+    const handleNavigate = () => {
+        history('/game');
+    };
 
     return (
         <header className={hStyle.root}>
             <div className={hStyle.forest}></div>
+            <div className={hStyle.silhouette}></div>
+            <div className={hStyle.moon}></div>
             <div className={hStyle.container}>
                 <h1>{stylePic}</h1>
-
                 <p>{children}</p>
                 <Link to="/game">
                     <button>Start GAME!</button>
                 </Link>
+                <button onClick={handleNavigate}>Start History GAME!</button>
             </div>
         </header>
     );

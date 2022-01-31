@@ -1,15 +1,18 @@
 import Menu from './Menu';
 import Navbar from './Navbar';
 import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import Footer from '../Footer';
+import s from './menuheader.module.css';
+import cn from 'classnames';
 
-const MenuHeader = ({ bgActive }) => {
+const MenuHeader = ({ bgActive, match }) => {
     const [menuState, setMenuState] = useState(false);
 
     const handleState = () => setMenuState((prev) => !prev);
 
     return (
         <>
-            <h1>MenuHeader</h1>
             <Menu menuState={menuState} setMenuState={setMenuState} handleState={handleState} />
             <Navbar
                 menuState={menuState}
@@ -17,6 +20,10 @@ const MenuHeader = ({ bgActive }) => {
                 setMenuState={setMenuState}
                 handleState={handleState}
             />
+            <div className={cn(s.wrap, { [s.isHomePage]: !bgActive })}>
+                <Outlet />
+            </div>
+            <Footer />
         </>
     );
 };

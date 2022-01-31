@@ -44,7 +44,7 @@
     position: relative;
     display: block;
     top: 50%;
-    transform: translate(-16px, -3px);
+    transform: translate(-15px, -3px);
 }
 .menuButton span::before {
     top: -8px;

@@ -2,7 +2,7 @@ import s from './menu.module.css';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 
-const Menu = ({ menuState, setMenuState, handleState }) => {
+const Menu = ({ menuState, handleState }) => {
     return (
         <>
             <div class={cn(s.menuContainer, { [s.active]: menuState, [s.deactive]: !menuState })}>
