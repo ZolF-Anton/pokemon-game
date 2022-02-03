@@ -2,10 +2,8 @@ import pStyle from './pokemonCard.module.css';
 import cn from 'classnames';
 import cardBackSide from './assets/card-back-side.jpg';
 
-const PokemonCard = ({ onClickF, type, values, name, id, img, isActive, ...props }) => {
-    // const [isActive, setActive] = useState(false);
-    //const onClickF1 = () => setActive(!isActive);
-    const onClickF1 = () => onClickF(id);
+const PokemonCard = ({ onClickF, type, values, name, id, img, isActive, keyUniq }) => {
+    const onClickF1 = () => onClickF(keyUniq);
 
     return (
         <div className={pStyle.root} onClick={onClickF1}>
@@ -30,6 +28,9 @@ const PokemonCard = ({ onClickF, type, values, name, id, img, isActive, ...props
                                 <small className={pStyle.type}>
                                     Type: <span>{type}</span>
                                 </small>
+                                <p className={pStyle.type}>
+                                    <span>{keyUniq}</span>
+                                </p>
                             </div>
                         </div>
                     </div>

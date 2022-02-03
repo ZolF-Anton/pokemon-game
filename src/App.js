@@ -6,22 +6,24 @@ import NotFound from './routes/NotFound';
 import ContactPage from './routes/Contact';
 import AboutPage from './routes/About';
 import MenuHeader from './components/MenuHeader';
+import { FireBaseContext } from './context/firebaseContext';
+import Firebase from './service/firebase';
 
 const App = () => {
     const match = useMatch('/');
 
-    console.log('####: match : useMatch', match ? true : false);
-
     return (
-        <Routes>
-            <Route path="/" element={<MenuHeader bgActive={match ? false : true} />}>
-                <Route index element={<HomePage />} />
-                <Route path="/game" element={<GamePage />} />
-                <Route path="/about" element={<ContactPage />} />
-                <Route path="/contact" element={<AboutPage />} />
-                <Route path="*" element={<NotFound />} />
-            </Route>
-        </Routes>
+        <FireBaseContext.Provider value={new Firebase()}>
+            <Routes>
+                <Route path="/" element={<MenuHeader bgActive={match ? false : true} />}>
+                    <Route index element={<HomePage />} />
+                    <Route path="/game" element={<GamePage />} />
+                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="*" element={<NotFound />} />
+                </Route>
+            </Routes>
+        </FireBaseContext.Provider>
     );
 };
 
