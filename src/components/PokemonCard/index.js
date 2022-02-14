@@ -2,12 +2,30 @@ import pStyle from './pokemonCard.module.css';
 import cn from 'classnames';
 import cardBackSide from './assets/card-back-side.jpg';
 
-const PokemonCard = ({ onClickF, type, values, name, id, img, isActive, keyUniq }) => {
+const PokemonCard = ({
+    className,
+    minimize,
+    onClickF,
+    type,
+    values,
+    name,
+    id,
+    img,
+    isActive,
+    isSelected,
+    keyUniq,
+}) => {
     const onClickF1 = () => onClickF(keyUniq);
 
     return (
-        <div className={pStyle.root} onClick={onClickF1}>
-            <div className={cn(pStyle.pokemonCard, { [pStyle.active]: isActive })}>
+        <>
+            <div
+                className={cn(className, pStyle.pokemonCard, {
+                    [pStyle.active]: isActive,
+                    [pStyle.selected]: isSelected,
+                })}
+                onClick={onClickF1}
+            >
                 <div className={pStyle.cardFront}>
                     <div className={cn(pStyle.wrap, pStyle.front)}>
                         <div className={cn(pStyle.pokemon, pStyle[type])}>
@@ -22,16 +40,15 @@ const PokemonCard = ({ onClickF, type, values, name, id, img, isActive, keyUniq 
                             <div className={pStyle.imgContainer}>
                                 <img src={img} alt={name} />
                             </div>
-                            <div className={pStyle.info}>
-                                <span className={pStyle.number}>#{id}</span>
-                                <h3 className={name}>{name}</h3>
-                                <small className={pStyle.type}>
-                                    Type: <span>{type}</span>
-                                </small>
-                                <p className={pStyle.type}>
-                                    <span>{keyUniq}</span>
-                                </p>
-                            </div>
+                            {!minimize && (
+                                <div className={pStyle.info}>
+                                    <span className={pStyle.number}>#{id}</span>
+                                    <h3 className={pStyle.name}>{name}</h3>
+                                    <small className={pStyle.type}>
+                                        Type: <span>{type}</span>
+                                    </small>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -42,7 +59,7 @@ const PokemonCard = ({ onClickF, type, values, name, id, img, isActive, keyUniq 
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

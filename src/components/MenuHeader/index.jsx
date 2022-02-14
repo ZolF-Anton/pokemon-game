@@ -6,7 +6,7 @@ import Footer from '../Footer';
 import s from './menuheader.module.css';
 import cn from 'classnames';
 
-const MenuHeader = ({ bgActive, match }) => {
+const MenuHeader = ({ bgActive }) => {
     const [menuState, setMenuState] = useState(false);
 
     const handleState = () => setMenuState((prev) => !prev);
