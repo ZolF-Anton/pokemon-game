@@ -4,12 +4,12 @@ import cn from 'classnames';
 const Navbar = ({ menuState, bgActive = false, handleState }) => {
     return (
         <>
-            <nav id={s.navbar} class={cn(s.root, { [s.bgActive]: bgActive })}>
-                <div class={s.navWrapper}>
-                    <p class={s.brand}>LOGO</p>
+            <nav id={s.navbar} className={cn(s.root, { [s.bgActive]: bgActive })}>
+                <div className={s.navWrapper}>
+                    <p className={s.brand}>LOGO</p>
                     <button
                         onClick={handleState}
-                        class={cn(s.menuButton, {
+                        className={cn(s.menuButton, {
                             [s.active]: menuState,
                             [s.deactive]: !menuState,
                         })}

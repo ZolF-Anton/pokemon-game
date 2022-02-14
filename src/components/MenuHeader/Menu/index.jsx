@@ -5,9 +5,11 @@ import cn from 'classnames';
 const Menu = ({ menuState, handleState }) => {
     return (
         <>
-            <div class={cn(s.menuContainer, { [s.active]: menuState, [s.deactive]: !menuState })}>
-                <div class={s.overlay} />
-                <div class={s.menuItems}>
+            <div
+                className={cn(s.menuContainer, { [s.active]: menuState, [s.deactive]: !menuState })}
+            >
+                <div className={s.overlay} />
+                <div className={s.menuItems}>
                     <ul>
                         <li>
                             <Link onClick={handleState} to="/">
