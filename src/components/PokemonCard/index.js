@@ -4,18 +4,21 @@ import cardBackSide from './assets/card-back-side.jpg';
 
 const PokemonCard = ({
     className,
-    minimize,
-    onClickF,
+    name,
+    img,
+    id,
     type,
     values,
-    name,
-    id,
-    img,
+    minimize,
     isActive,
+    onClickF,
     isSelected,
     keyUniq,
+    possession,
 }) => {
-    const onClickF1 = () => onClickF(keyUniq);
+    const handleClickCard = () => {
+        onClickF && onClickF(keyUniq);
+    };
 
     return (
         <>
@@ -24,11 +27,11 @@ const PokemonCard = ({
                     [pStyle.active]: isActive,
                     [pStyle.selected]: isSelected,
                 })}
-                onClick={onClickF1}
+                onClick={() => handleClickCard(keyUniq)}
             >
                 <div className={pStyle.cardFront}>
                     <div className={cn(pStyle.wrap, pStyle.front)}>
-                        <div className={cn(pStyle.pokemon, pStyle[type])}>
+                        <div className={cn(pStyle.pokemon, pStyle[type], pStyle[possession])}>
                             <div className={pStyle.values}>
                                 <div className={cn(pStyle.count, pStyle.top)}>{values.top}</div>
                                 <div className={cn(pStyle.count, pStyle.right)}>{values.right}</div>
