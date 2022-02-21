@@ -2,11 +2,11 @@ import pStyle from './pokemonCard.module.css';
 import cardBackSide from './assets/card-back-side.jpg';
 
 const PokemonCard = ({ name, img, id, type, ...props }) => {
-    const onClickF = () => {
-        console.log('Pokemon name is:' + props.name);
-    };
+    // const onClickF = () => {
+    //     console.log('Pokemon name is:' + props.name);
+    // };
     return (
-        <div className={pStyle.root} onClick={onClickF}>
+        <div className={pStyle.root}>
             <div className={pStyle.pokemonCard}>
                 <div className={pStyle.cardFront}>
                     <div className={`${pStyle.wrap} ${pStyle.front}`}>
@@ -32,7 +32,7 @@ const PokemonCard = ({ name, img, id, type, ...props }) => {
                                 <span className={pStyle.number}>#{props.id}</span>
                                 <h3 className={pStyle.name}>{props.name}</h3>
                                 <small className={pStyle.type}>
-                                    Type: <span>{props.type}</span>
+                                    Type: <span>{type}</span>
                                 </small>
                             </div>
                         </div>
