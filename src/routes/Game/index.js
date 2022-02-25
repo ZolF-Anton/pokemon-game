@@ -56,6 +56,7 @@ const GamePage = ({ bgActive }) => {
                     </ul>
                 </div>
                 <Routes>
+                    <Route index />
                     <Route path={'start'} element={<StartPage />} />
                     <Route path={`board`} element={<BoardPage />} />
                     <Route path={`finish`} element={<FinishPage />} />

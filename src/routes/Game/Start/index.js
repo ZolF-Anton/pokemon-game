@@ -89,6 +89,12 @@ const StartPage = () => {
     //     const data = DATA;
     //     firebase.addPokemon(data);
     // };
+    // const handleAddPokemonExtra = () => {
+    //     const data = DATA;
+    //     firebase.addPokemon(data, async()=> {
+    //      await getPokemons();
+    //});
+    // };
     const handleStartGameClick = () => {
         historyNav('/game/board');
     };
