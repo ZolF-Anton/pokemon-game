@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import PokemonCard from '../../../components/PokemonCard';
 import { PokemonContext } from '../../../context/pokemonContext';
 import PlayerBoard from './component/PlayerBoard';
@@ -33,6 +33,7 @@ const BoardPage = () => {
     const [steps, setSteps] = useState(0);
 
     const historyNav = useNavigate();
+    const navigate = useNavigate();
 
     const handleClickBoardPlate = async (position) => {
         console.log('###### position', position);
@@ -68,8 +69,14 @@ const BoardPage = () => {
         }
     };
 
+    console.log('######INSIDE####:', Object.keys(pokemonContext.pokemons));
+
     if (!Object.keys(pokemonContext.pokemons)) {
-        historyNav('/game', { replace: true });
+        console.log(
+            '#####!Object.keys(pokemonContext.pokemons):',
+            !Object.keys(pokemonContext.pokemons)
+        );
+        navigate('/', { replace: true });
     }
 
     useEffect(() => {
@@ -104,10 +111,13 @@ const BoardPage = () => {
             const [count1, count2] = counterWin(board, player1, player2);
             if (count1 > count2) {
                 alert('WIN');
+                navigate('/game/finish', { replace: true, state: 'WIN' });
             } else if (count1 < count2) {
                 alert('lose');
+                navigate('/game/finish', { replace: true, state: 'lose' });
             } else {
                 alert('DRAW');
+                navigate('/game/finish', { replace: true, state: 'draw' });
             }
         }
     }, [steps]);
@@ -143,19 +153,3 @@ const BoardPage = () => {
     );
 };
 export default BoardPage;
-
-/* {.map(
-                    ({ id, name, img, type, values }, index) => (
-                        <PokemonCard
-                            className={s.card}
-                            key={index}
-                            id={id}
-                            img={img}
-                            name={name}
-                            values={values}
-                            type={type}
-                            isActive
-                            minimize
-                        />
-                    )
-                )} */
