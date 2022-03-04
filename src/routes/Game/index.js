@@ -9,10 +9,12 @@ import BoardPage from './Board/index';
 import FinishPage from './Finish/index';
 import NotFound from '../NotFound';
 import { PokemonContext } from '../../context/pokemonContext';
+import { CardsContext } from '../../context/cardsContext';
 import { useState } from 'react';
 
 const GamePage = ({ bgActive }) => {
     const [selectedPokemons, setSelectedPokemons] = useState({});
+    const [twoArraysOfPokemons, setTwoArraysOfPokemons] = useState([]);
 
     const handleSelectedPokemons = (keyUniq, pokemon) => {
         setSelectedPokemons((pervState) => {
@@ -36,32 +38,34 @@ const GamePage = ({ bgActive }) => {
                     onSelectedPokemons: handleSelectedPokemons,
                 }}
             >
-                <div className={cn({ [s.hidden]: bgActive })}>
-                    <ul>
-                        <li>
-                            <button>
-                                <Link to="start">Start Game</Link>
-                            </button>
-                        </li>
-                        <li>
-                            <button>
-                                <Link to="board">Board Page</Link>
-                            </button>
-                        </li>
-                        <li>
-                            <button>
-                                <Link to="finish">FINISH</Link>
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-                <Routes>
-                    <Route index />
-                    <Route path={'start'} element={<StartPage />} />
-                    <Route path={`board`} element={<BoardPage />} />
-                    <Route path={`finish`} element={<FinishPage />} />
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
+                <CardsContext.Provider value={[twoArraysOfPokemons, setTwoArraysOfPokemons]}>
+                    <div className={cn({ [s.hidden]: bgActive })}>
+                        <ul>
+                            <li>
+                                <button>
+                                    <Link to="start">Start Game</Link>
+                                </button>
+                            </li>
+                            <li>
+                                <button>
+                                    <Link to="board">Board Page</Link>
+                                </button>
+                            </li>
+                            <li>
+                                <button>
+                                    <Link to="finish">FINISH</Link>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <Routes>
+                        <Route index />
+                        <Route path={'start'} element={<StartPage />} />
+                        <Route path={`board`} element={<BoardPage />} />
+                        <Route path={`finish`} element={<FinishPage />} />
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
+                </CardsContext.Provider>
             </PokemonContext.Provider>
         </>
     );

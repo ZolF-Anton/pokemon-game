@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
-import { useNavigate, Navigate } from 'react-router-dom';
-import PokemonCard from '../../../components/PokemonCard';
+import { useNavigate } from 'react-router-dom';
 import { PokemonContext } from '../../../context/pokemonContext';
-import PlayerBoard from './component/PlayerBoard';
+import PokemonCard from '../../../components/PokemonCard';
 import s from './board.module.css';
+import PlayerBoard from './component/PlayerBoard';
+import Result from '../../../components/Result/Result';
 
 const counterWin = (board, player1, player2) => {
     let player1Count = player1.length;
@@ -32,12 +33,12 @@ const BoardPage = () => {
     const [choiceCard, setChoiceCard] = useState(null);
     const [steps, setSteps] = useState(0);
 
-    const historyNav = useNavigate();
     const navigate = useNavigate();
 
     const handleClickBoardPlate = async (position) => {
         console.log('###### position', position);
         console.log('###### choiceCard', choiceCard);
+
         if (choiceCard) {
             const params = {
                 position,
@@ -69,13 +70,7 @@ const BoardPage = () => {
         }
     };
 
-    console.log('######INSIDE####:', Object.keys(pokemonContext.pokemons));
-
     if (!Object.keys(pokemonContext.pokemons)) {
-        console.log(
-            '#####!Object.keys(pokemonContext.pokemons):',
-            !Object.keys(pokemonContext.pokemons)
-        );
         navigate('/', { replace: true });
     }
 
@@ -99,8 +94,6 @@ const BoardPage = () => {
                     possession: 'red',
                 }));
             });
-
-            //return player2Request;
         }
         getBoard();
         getBoard2();
@@ -111,13 +104,21 @@ const BoardPage = () => {
             const [count1, count2] = counterWin(board, player1, player2);
             if (count1 > count2) {
                 alert('WIN');
-                navigate('/game/finish', { replace: true, state: 'WIN' });
+
+                navigate('/game/finish', {
+                    replace: true,
+                    state: player1,
+                });
             } else if (count1 < count2) {
                 alert('lose');
-                navigate('/game/finish', { replace: true, state: 'lose' });
+
+                navigate('/game/finish', {
+                    replace: true,
+                    state: player1,
+                });
             } else {
                 alert('DRAW');
-                navigate('/game/finish', { replace: true, state: 'draw' });
+                navigate('/game/finish', true);
             }
         }
     }, [steps]);
