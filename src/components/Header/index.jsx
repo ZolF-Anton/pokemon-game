@@ -6,7 +6,7 @@ const Header = ({ title, descr, children, onClickButton }) => {
     const history = useNavigate();
 
     const handleNavigate = () => {
-        history('/game');
+        history('/game/start');
     };
 
     return (
@@ -17,7 +17,7 @@ const Header = ({ title, descr, children, onClickButton }) => {
             <div className={hStyle.container}>
                 <h1>{stylePic}</h1>
                 <p>{children}</p>
-                <Link to="/game">
+                <Link to="/game/start">
                     <button>Start GAME!</button>
                 </Link>
                 <button onClick={handleNavigate}>Start History GAME!</button>

@@ -11,6 +11,7 @@ const PokemonCard = ({
     values,
     minimize,
     isActive,
+
     onClickF,
     isSelected,
     keyUniq,
@@ -19,6 +20,13 @@ const PokemonCard = ({
     const handleClickCard = () => {
         onClickF && onClickF(keyUniq);
     };
+
+    // const values1 = {
+    //     top: 8,
+    //     bottom: 8,
+    //     right: 7,
+    //     left: 9,
+    // };
 
     return (
         <>

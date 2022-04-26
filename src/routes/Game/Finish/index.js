@@ -2,7 +2,6 @@ import { useEffect, useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { PokemonContext } from '../../../context/pokemonContext';
 import { FireBaseContext } from '../../../context/firebaseContext';
-//import { CardsContext } from '../../../context/cardsContext';
 import PlayerBoard from '../Board/component/PlayerBoard';
 import s from '../Finish/finish.module.css';
 import cn from 'classnames';
@@ -10,16 +9,23 @@ import cn from 'classnames';
 const FinishPage = ({ bgActive }, ...props) => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { player1Cards, player2Cards, setSelectedPokemons } = useContext(PokemonContext);
-    //const [twoArraysOfPokemons, setTwoArraysOfPokemons] = useContext(CardsContext);
+    const { pokemons, onSelectedPokemons } = useContext(PokemonContext);
     const { addPokemon } = useContext(FireBaseContext);
     const [selectedCard, setSelectedCard] = useState(null);
 
+    console.log('#####location.state#####:', location);
+    // if (!location.state) {
+    //     console.log('#####useEffWorking######');
+    //     return navigate('/game', { replace: true });
+    // }
+
     useEffect(() => {
-        if (!location.state) {
-            navigate('/game', { replace: true });
+        console.log('#####111111useEffWorking######');
+        if (location.state === null) {
+            console.log('#####useEffWorking######');
+            navigate('/game/start', { replace: true });
         }
-    }, [props]);
+    }, [location.state, navigate]); /// замена - было props
 
     const handleClickCard = (card) => {
         setSelectedCard(card);
@@ -33,7 +39,7 @@ const FinishPage = ({ bgActive }, ...props) => {
             possession: '',
         });
 
-        navigate('/game', { replace: true });
+        navigate('/game/start', { replace: true });
     };
 
     return (
@@ -41,7 +47,8 @@ const FinishPage = ({ bgActive }, ...props) => {
             <div className={cn(s.playerOne, s.selected)}>
                 <PlayerBoard
                     player={1}
-                    cards={[...Object.values(player1Cards)]}
+                    //cards={[...Object.values(player1Cards)]}
+                    cards={[...Object.values(pokemons)]}
                     onClickCard={handleClickCard}
                 />
             </div>
@@ -55,9 +62,9 @@ const FinishPage = ({ bgActive }, ...props) => {
             </div>
             <div className={s.playerTwo}>
                 <PlayerBoard
-                    className={s.playerTwo}
                     player={1}
-                    cards={player2Cards}
+                    cards={[]}
+                    //cards={location.state.player2}
                     onClickCard={handleClickCard}
                 />
             </div>
