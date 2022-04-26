@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PokemonContext } from '../../../context/pokemonContext';
+//import { CardsContext } from '../../../context/cardsContext';
 import PokemonCard from '../../../components/PokemonCard';
 import s from './board.module.css';
 import PlayerBoard from './component/PlayerBoard';
@@ -30,8 +31,10 @@ const BoardPage = () => {
         }));
     });
     const [player2, setPlayer2] = useState([]);
+    const [fullPlayer2, setFullPlayer2] = useState([]);
     const [choiceCard, setChoiceCard] = useState(null);
     const [steps, setSteps] = useState(0);
+    const [winner, setWinner] = useState(null);
 
     const navigate = useNavigate();
 
@@ -79,21 +82,21 @@ const BoardPage = () => {
             const boardResponse = await fetch('https://reactmarathon-api.netlify.app/api/board');
             const boardRequest = await boardResponse.json();
             setBoard(boardRequest.data);
-
-            //return boardRequest;
         }
         async function getBoard2() {
             const player2Response = await fetch(
                 'https://reactmarathon-api.netlify.app/api/create-player'
             );
             const player2Request = await player2Response.json();
-
+            console.log('player2Request:', player2Request);
+            setFullPlayer2(player2Request);
             setPlayer2(() => {
                 return player2Request.data.map((item) => ({
                     ...item,
                     possession: 'red',
                 }));
             });
+            setFullPlayer2(player2);
         }
         getBoard();
         getBoard2();
@@ -103,25 +106,31 @@ const BoardPage = () => {
         if (steps === 9) {
             const [count1, count2] = counterWin(board, player1, player2);
             if (count1 > count2) {
-                alert('WIN');
-
-                navigate('/game/finish', {
-                    replace: true,
-                    state: player1,
-                });
+                setWinner('win');
             } else if (count1 < count2) {
-                alert('lose');
-
-                navigate('/game/finish', {
-                    replace: true,
-                    state: player1,
-                });
+                setWinner('lose');
             } else {
-                alert('DRAW');
+                alert('draw');
+                setWinner('draw');
                 navigate('/game/finish', true);
             }
         }
     }, [steps]);
+
+    const handleStartGame = () => {
+        if (winner === 'win') {
+            navigate('/game/finish', {
+                replace: true,
+                state: { player2: fullPlayer2, testMSG: 'fine' },
+            });
+        } else {
+            navigate('/game/start', {
+                replace: true,
+                state: player1,
+            });
+            pokemonContext.pokemons && pokemonContext.pokemonsSet({});
+        }
+    };
 
     return (
         <div className={s.root}>
@@ -130,6 +139,7 @@ const BoardPage = () => {
                     player={1}
                     cards={player1}
                     onClickCard={(card) => setChoiceCard(card)}
+                    turnState={Boolean(steps % 2)}
                 />
             </div>
             <div className={s.board}>
@@ -148,8 +158,10 @@ const BoardPage = () => {
                     player={2}
                     cards={player2}
                     onClickCard={(card) => setChoiceCard(card)}
+                    turnState={!Boolean(steps % 2)}
                 />
             </div>
+            {steps === 9 && <Result type={winner} handleStartGame={handleStartGame} />}
         </div>
     );
 };

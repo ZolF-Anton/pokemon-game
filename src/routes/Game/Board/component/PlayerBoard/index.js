@@ -3,8 +3,10 @@ import PokemonCard from '../../../../../components/PokemonCard';
 import cn from 'classnames';
 import s from './playerBoard.module.css';
 
-const PlayerBoard = ({ player, cards, onClickCard }) => {
+const PlayerBoard = ({ player, cards, onClickCard, turnState }) => {
     const [isSelected, setSelected] = useState(null);
+    console.log('###  player ###:', player);
+    console.log('###  cards ###:', cards);
 
     return (
         <>
@@ -28,6 +30,7 @@ const PlayerBoard = ({ player, cards, onClickCard }) => {
                     />
                 </div>
             ))}
+            <div className={cn({ [s.turnState]: turnState })}></div>
         </>
     );
 };

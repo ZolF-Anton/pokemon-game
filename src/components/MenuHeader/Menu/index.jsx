@@ -17,7 +17,7 @@ const Menu = ({ menuState, handleState }) => {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={handleState} to="/game">
+                            <Link onClick={handleState} to="/game/start">
                                 GAME
                             </Link>
                         </li>

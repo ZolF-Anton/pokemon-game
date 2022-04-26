@@ -2,10 +2,9 @@ import { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PokemonCard from '../../../components/PokemonCard';
 import Layout from '../../../components/Layout';
-
-import s from './start.module.css';
-import { FireBaseContext } from '../../../context/firebaseContext';
 import { PokemonContext } from '../../../context/pokemonContext';
+import { FireBaseContext } from '../../../context/firebaseContext';
+import s from './start.module.css';
 
 // const DATA = {
 //     abilities: ['keen-eye', 'tangled-feet', 'big-pecks'],
@@ -38,7 +37,7 @@ const StartPage = () => {
     const historyNav = useNavigate();
     const [pokemons, setPokemons] = useState({});
 
-    console.log('####: pokemonsContext:', pokemonsContext);
+    console.log('####: pokemonsContext.pokemons:', pokemonsContext.pokemons);
 
     // const getPokemons = async () => {
     //     const responce = await firebase.getPokemonsOnce();
@@ -50,7 +49,7 @@ const StartPage = () => {
             setPokemons(pokemon);
         });
         return () => firebase.offPokemonSoket();
-    }, []);
+    }, [firebase]); //// замена - было пусто
 
     const handleChangeSelected = (keyUniq) => {
         const pokemon = { ...pokemons[keyUniq] };

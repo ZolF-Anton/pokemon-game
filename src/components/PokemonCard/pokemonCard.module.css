@@ -250,7 +250,7 @@
 
 /************Border Selected color *************/
 .pokemonCard.selected .wrap.front::after {
-    border: 13px solid #fcc756;
+    border: 11px solid #eb5029;
     transition: linear 300ms;
 }
 .pokemonCard:active .wrap.front::after,

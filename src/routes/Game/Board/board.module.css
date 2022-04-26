@@ -40,6 +40,7 @@
     left: 5vw;
     width: 18vw;
     height: 50.3vw;
+    padding-top: 6vw;
 }
 .playerTwo {
     position: absolute;
@@ -47,4 +48,5 @@
     right: 5vw;
     width: 18vw;
     height: 50.3vw;
+    padding-top: 6vw;
 }
