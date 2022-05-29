@@ -1,0 +1,102 @@
+.root {
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+.root.bgActive {
+    background: #181d23;
+}
+.root .navWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    padding: 0 2rem;
+}
+.root .brand {
+    font-size: 1.6rem;
+    color: #fafafa;
+    cursor: default;
+}
+/***** Menu Button *****/
+.menuButton {
+    position: relative;
+    height: 22px;
+    width: 30px;
+    outline: none;
+}
+.menuButton span,
+.menuButton span::before,
+.menuButton span::after {
+    position: absolute;
+    content: '';
+    width: 30px;
+    height: 3px;
+    transform: translateX(-15px);
+    background: #fafafa;
+    transition: 500ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+.menuButton span {
+    position: relative;
+    display: block;
+    top: 50%;
+    transform: translate(-15px, -3px);
+}
+.menuButton span::before {
+    top: -8px;
+}
+.menuButton span::after {
+    top: 8px;
+}
+.menuButton:hover > span,
+.menuButton:hover > span::before,
+.menuButton:hover > span::after {
+    background: #f300b4;
+    border: none;
+}
+.menuButton.active > span {
+    background: transparent;
+    transform: translate(-30px, -2px);
+}
+.menuButton.active > span::before {
+    transform: rotate(-225deg);
+    top: 0px;
+}
+.menuButton.active > span::after {
+    transform: rotate(225deg);
+    top: 0px;
+}
+@media only screen and (max-width: 849px) {
+    #navbar {
+        background: #181d23aa;
+    }
+}
+
+.loginAndMenu {
+    display: flex;
+}
+
+.loginWrap {
+    width: 33px;
+    height: 33px;
+    margin-right: 12px;
+}
+
+.loginWrap svg {
+    width: 100%;
+    height: 100%;
+}
+
+.loginWrap svg g {
+    fill: #fafafa;
+    transition: fill ease-in-out 250ms;
+}
+
+.loginWrap:hover svg g {
+    fill: #f300b4;
+    transition: fill ease-in-out 250ms;
+}

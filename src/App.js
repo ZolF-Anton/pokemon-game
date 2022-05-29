@@ -1,32 +1,55 @@
-import Header from './components/Header';
-import Layout from './components/Layout';
-import Footer from './components/Footer';
-import bgImg from './components/img/bg3.jpg';
+//import { useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { NotificationContainer } from 'react-notifications';
+import HomePage from './routes/Home';
+import GamePage from './routes/Game';
+import NotFound from './routes/NotFound';
+import ContactPage from './routes/Contact';
+import AboutPage from './routes/About';
+import MenuHeader from './components/MenuHeader';
+import { FireBaseContext } from './context/firebaseContext';
+import Firebase from './service/firebase';
+import 'react-notifications/lib/notifications.css';
+import PrivateRoute from './components/PrivateRoute';
 
 const App = () => {
+    const location = useLocation();
+    const isPadding = location.pathname === '/' || location.pathname === '/game/board';
+
     return (
-        <>
-            <Header title="No m00n here" descr="An adventure of Pooh" />
-            <Layout
-                title="Chapter ONE"
-                descr=" ...in which we are introduced to
-                        Winnie-the-Pooh and some bees, and the stories begin"
-                urlBg={bgImg}
-            />
-            <Layout
-                title="Chapter TWO"
-                descr=" ...in which Pooh goes visiting and gets
-                        into a tight place"
-                colorBg="#e2e2e2"
-            />
-            <Layout
-                title="Chapter THREE"
-                descr="...in which Pooh and piglet go hunting
-                        and nearly catch a woozle"
-                urlBg={bgImg}
-            />
-            <Footer />
-        </>
+        <FireBaseContext.Provider value={new Firebase()}>
+            <Routes>
+                <Route path="/" element={<MenuHeader bgActive={!isPadding} />}>
+                    <Route index element={<HomePage />} />
+                    <Route
+                        path="game/*"
+                        element={
+                            <PrivateRoute>
+                                <GamePage bgActive={isPadding} />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="contact"
+                        element={
+                            <PrivateRoute>
+                                <ContactPage />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="about"
+                        element={
+                            <PrivateRoute>
+                                <AboutPage />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route path="*" element={<NotFound />} />
+                </Route>
+            </Routes>
+            <NotificationContainer />
+        </FireBaseContext.Provider>
     );
 };
 

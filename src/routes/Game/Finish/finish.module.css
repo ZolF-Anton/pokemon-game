@@ -1,0 +1,137 @@
+/* .root {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: calc(100vw / 1.71);
+    position: relative;
+    background-color: aquamarine;
+} */
+.board {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    position: absolute;
+    width: 50.3vw;
+    height: 50.3vw;
+    top: 4.3vw;
+    left: 25.1vw;
+}
+.boardPlate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    cursor: pointer;
+}
+.boardPlate:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+.boardPlate.disabled:hover {
+    background: none;
+}
+/* .card {
+    max-height: 14.8vw;
+    margin-top: -6vw;
+}
+.card:first-child {
+    margin-top: 0;
+}
+.playerOne {
+    position: absolute;
+    top: 4.3vw;
+    left: 5vw;
+    width: 18vw;
+    height: 50.3vw;
+}
+.playerTwo {
+    position: absolute;
+    top: 4.3vw;
+    right: 5vw;
+    width: 18vw;
+    height: 50.3vw;
+} */
+
+.root {
+    /*display: inline-flex;*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: calc(100vw / 1.71);
+    position: relative;
+    background-color: aquamarine;
+    display: grid;
+    /*grid-template-columns: auto auto auto auto auto;
+  grid-template-rows:auto auto auto ;*/
+}
+.card {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+.cardBoard {
+    grid-template-columns: auto auto auto auto auto;
+}
+.cards {
+    display: flex;
+    flex-direction: row;
+    /* display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto auto auto;*/
+}
+.playerOne {
+    /*display: grid;
+  grid-template-columns: auto auto auto auto auto;*/
+    display: flex;
+    flex-direction: row;
+}
+.playerOne:first-child {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-gap: 40px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 160px;
+}
+
+.playerTwo {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-gap: 40px;
+    margin-left: 100px;
+    margin-right: 100px;
+    /*display: flex;
+  flex-direction: row;*/
+}
+/*.playerTwo:first-child{
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-gap: 20px;
+}*/
+
+.buttonWrap {
+    margin: 10px 0 50px 0;
+}
+
+.buttonWrap button {
+    display: flex;
+    justify-content: center;
+    flex: 1 1 30%;
+    padding: 10px 20px;
+    margin: 10px auto;
+    background-color: #f300b4;
+    color: white;
+    font-size: 24px;
+    border: 0;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.buttonWrap button:hover {
+    background-color: #f300b4;
+    padding: 12px 24px;
+    margin: 8px auto;
+}
+
+.buttonWrap button:active {
+    background-color: #f300b4;
+    padding: 8px 18px;
+    margin: 12px auto;
+}

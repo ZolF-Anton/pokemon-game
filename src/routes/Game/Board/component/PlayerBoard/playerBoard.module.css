@@ -1,0 +1,26 @@
+.cardBoard {
+    width: 100%;
+    max-width: 18vw;
+    height: 14.8vw;
+    margin-top: -6vw;
+}
+
+/* .cardBoard:first-child {
+    margin-top: 0;
+} */
+
+.cardBoard.selected {
+    margin-left: -20px;
+}
+
+.turnState {
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: grey;
+    border-radius: 24px;
+    position: absolute;
+    top: 0px;
+    opacity: 0.1;
+    cursor: not-allowed;
+}
