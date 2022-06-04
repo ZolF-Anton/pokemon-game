@@ -1,8 +1,10 @@
 import firebase from 'firebase/app';
 import 'firebase/database';
 
+const { REACT_APP_API_KEY } = process.env;
+
 const firebaseConfig = {
-    apiKey: 'AIzaSyD3Ojs7UoqFYvKkp_0rHJDWN6E6c9Qh6tU',
+    apiKey: REACT_APP_API_KEY,
     authDomain: 'pokenon-game.firebaseapp.com',
     databaseURL: 'https://pokenon-game-default-rtdb.europe-west1.firebasedatabase.app',
     projectId: 'pokenon-game',
@@ -10,6 +12,7 @@ const firebaseConfig = {
     messagingSenderId: '970750674998',
     appId: '1:970750674998:web:c0eca2c176f9861a60b097',
 };
+
 firebase.initializeApp(firebaseConfig);
 class Firebase {
     constructor() {
